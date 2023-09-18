@@ -1,0 +1,15 @@
+FROM python:3.10-alpine
+
+WORKDIR /workdirectory
+
+RUN apk update && apk add bash curl make gcc libc-dev libffi-dev
+
+RUN curl -sSL https://install.python-poetry.org | python3 -
+
+ENV POETRY_HOME=/root/.local/bin
+
+ENV PATH=$POETRY_HOME:$PATH
+
+RUN poetry config virtualenvs.create false
+
+ENTRYPOINT /bin/bash

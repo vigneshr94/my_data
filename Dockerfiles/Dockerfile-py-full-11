@@ -1,0 +1,15 @@
+FROM python:3.11
+
+WORKDIR /root/Work_space
+
+RUN apt-get update && apt-get install curl git -y
+
+RUN curl -sSL https://install.python-poetry.org | python3 -
+
+ENV POETRY_HOME="/root/.local"
+
+ENV PATH="$POETRY_HOME/bin:$PATH"
+
+RUN /root/.local/bin/poetry config virtualenvs.create false
+
+ENTRYPOINT [ "/bin/bash" ]
