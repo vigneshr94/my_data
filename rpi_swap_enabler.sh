@@ -30,13 +30,13 @@ echo "Adding swap to fstab"
 echo '/swap/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
 
 echo "Viewing fstab"
-cat /etc/fstab
+tail -2 /etc/fstab
 
 echo "Fine Tuning swap settings"
 echo "vm.swappiness=10" | sudo tee -a /etc/sysctl.conf
 echo "vm.vfs_cache_pressure=50" | sudo tee -a /etc/sysctl.conf
 
-cat /etc/sysctl.conf
+tail -2 /etc/sysctl.conf
 
 echo "Applying swap settings"
 sudo sysctl vm.swappiness=10
