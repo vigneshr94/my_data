@@ -2,7 +2,7 @@ FROM python:3.11-alpine
 
 WORKDIR /root/Work_space
 
-RUN apk update && apk add gcc libc-dev make libffi-dev curl git bash
+RUN apk update && apk add bash curl make gcc libc-dev libffi-dev git
 
 RUN curl -sSL https://install.python-poetry.org | python3 -
 
@@ -11,5 +11,7 @@ ENV POETRY_HOME="/root/.local"
 ENV PATH="$POETRY_HOME/bin:$PATH"
 
 RUN /root/.local/bin/poetry config virtualenvs.create false
+
+RUN python3 -m pip3 install bpython
 
 ENTRYPOINT [ "/bin/bash" ]
