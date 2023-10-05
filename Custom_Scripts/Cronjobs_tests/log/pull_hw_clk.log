@@ -1,0 +1,83 @@
+2023-03-10 16:30:12,794 INFO time_sync (19): ************* CHECK PULL H/W CLOCK CRONJOB STARTED***************
+2023-03-10 16:30:16,509 ERROR time_sync (85): unconverted data remains: .989627+00:00
+2023-03-10 16:34:05,025 INFO time_sync (19): ************* CHECK PULL H/W CLOCK CRONJOB STARTED***************
+2023-03-10 16:35:41,313 INFO time_sync (19): ************* CHECK PULL H/W CLOCK CRONJOB STARTED***************
+2023-03-10 16:36:18,005 INFO time_sync (19): ************* CHECK PULL H/W CLOCK CRONJOB STARTED***************
+2023-03-10 16:42:13,144 INFO time_sync (19): ************* CHECK PULL H/W CLOCK CRONJOB STARTED***************
+2023-03-10 16:43:45,407 INFO time_sync (20): ************* CHECK PULL H/W CLOCK CRONJOB STARTED***************
+2023-03-10 16:43:46,347 INFO time_sync (7): ZC Uptime: 1000
+2023-03-10 16:45:50,197 INFO time_sync (20): ************* CHECK PULL H/W CLOCK CRONJOB STARTED***************
+2023-03-10 16:45:51,186 INFO time_sync (7): ZC Uptime: 1000
+2023-03-10 16:46:33,546 INFO time_sync (7): ZC Uptime: 1000
+2023-03-10 16:47:15,208 INFO time_sync (7): ZC Uptime: 1000
+2023-03-10 17:02:37,982 ERROR time_sync (149): name 'reboot_time_1' is not defined
+2023-03-10 17:02:37,983 INFO time_sync (7): ZC Uptime: 1000
+2023-03-10 17:09:15,741 ERROR time_sync (156): list index out of range
+2023-03-10 17:09:15,742 INFO time_sync (7): ZC Uptime: 1000
+2023-03-10 17:10:05,346 INFO time_sync (7): ZC Uptime: 307
+2023-03-11 19:21:12,695 INFO time_sync (53): ************* CHECK TIME SYNC CRONJOB STARTED***************
+2023-03-11 19:21:12,754 INFO time_sync (150): Time in ZC: 2023-03-11 19:21:12
+2023-03-11 19:21:13,823 INFO time_sync (152): ZC Uptime: 38 mins
+2023-03-11 19:21:13,824 INFO time_sync (56): Current state: default
+2023-03-12 13:33:09,165 INFO time_sync (35): ************* CHECK HTBB CRONJOB STARTED**************
+2023-03-12 13:33:09,168 INFO time_sync (40): Current state: midnight
+2023-03-12 13:33:09,782 INFO time_sync (21): checking backtracking at midnight
+2023-03-12 15:07:44,537 INFO time_sync (55): ************* CHECK HTBB CRONJOB STARTED**************
+2023-03-12 15:10:47,784 INFO time_sync (55): ************* CHECK HTBB CRONJOB STARTED**************
+2023-03-12 15:13:37,677 INFO time_sync (55): ************* CHECK HTBB CRONJOB STARTED**************
+2023-03-12 15:14:49,435 INFO time_sync (55): ************* CHECK HTBB CRONJOB STARTED**************
+2023-03-12 15:21:05,864 INFO time_sync (55): ************* CHECK HTBB CRONJOB STARTED**************
+2023-03-12 15:21:33,728 INFO time_sync (55): ************* CHECK HTBB CRONJOB STARTED**************
+2023-03-12 15:22:16,031 INFO time_sync (55): ************* CHECK HTBB CRONJOB STARTED**************
+2023-03-12 15:23:00,684 INFO time_sync (55): ************* CHECK HTBB CRONJOB STARTED**************
+2023-03-12 15:34:55,044 INFO time_sync (55): ************* CHECK HTBB CRONJOB STARTED**************
+2023-03-12 15:37:02,442 INFO time_sync (55): ************* CHECK HTBB CRONJOB STARTED**************
+2023-03-12 15:41:27,103 INFO time_sync (57): ************* CHECK HTBB CRONJOB STARTED**************
+2023-03-12 15:41:44,873 INFO time_sync (153): Time in ZC: 2023-03-12 15:41:44
+2023-03-12 15:41:45,474 INFO time_sync (155): ZC Uptime: 82 mins
+2023-03-12 15:41:45,475 INFO time_sync (63): Current state: default
+2023-03-12 15:42:11,536 INFO time_sync (153): Time in ZC: 2023-03-12 15:42:11
+2023-03-12 15:42:12,120 INFO time_sync (155): ZC Uptime: 82 mins
+2023-03-12 15:42:12,121 INFO time_sync (63): Current state: default
+2023-03-12 15:42:31,271 INFO time_sync (153): Time in ZC: 2023-03-12 15:42:31
+2023-03-12 15:42:31,850 INFO time_sync (155): ZC Uptime: 83 mins
+2023-03-12 15:42:31,850 INFO time_sync (63): Current state: default
+2023-03-12 15:45:03,905 INFO time_sync (57): ************* CHECK HTBB CRONJOB STARTED**************
+2023-03-12 15:45:26,178 INFO time_sync (153): Time in ZC: 2023-03-12 15:45:26
+2023-03-12 15:45:26,762 INFO time_sync (155): ZC Uptime: 86 mins
+2023-03-12 15:45:26,762 INFO time_sync (63): Current state: default
+2023-03-12 15:46:05,892 INFO time_sync (57): ************* CHECK HTBB CRONJOB STARTED**************
+2023-03-12 15:46:12,613 INFO time_sync (153): Time in ZC: 2023-03-12 15:46:12
+2023-03-12 15:46:13,188 INFO time_sync (155): ZC Uptime: 86 mins
+2023-03-12 15:46:13,188 INFO time_sync (63): Current state: default
+2023-03-12 15:46:29,123 INFO time_sync (57): ************* CHECK HTBB CRONJOB STARTED**************
+2023-03-12 15:46:36,766 INFO time_sync (153): Time in ZC: 2023-03-12 15:46:36
+2023-03-12 15:46:37,335 INFO time_sync (155): ZC Uptime: 87 mins
+2023-03-12 15:46:37,336 INFO time_sync (63): Current state: default
+2023-03-12 15:47:33,675 INFO time_sync (57): ************* CHECK HTBB CRONJOB STARTED**************
+2023-03-12 15:47:47,610 INFO time_sync (64): Current state: reboot
+2023-03-12 15:47:54,023 INFO time_sync (9): checking backtracking at reboot
+2023-03-12 15:47:54,653 INFO time_sync (12): last_system_rebooted: 2023-03-12 08:51:34
+2023-03-12 15:47:54,653 INFO time_sync (14): Last HTBB sent: 2023-03-12 08:51:36 hrs
+2023-03-12 15:47:54,653 ERROR time_sync (70): 'NoneType' object is not subscriptable
+2023-03-12 16:40:46,490 INFO time_sync (16): ************* CHECK SHUTDOWN CRONJOB STARTED**************
+2023-03-12 16:40:46,491 INFO time_sync (19): Last ZC rebooted at 20 mins.
+2023-03-12 16:40:46,491 INFO time_sync (5): Checking shutdown status cron at reboot.
+2023-03-12 16:40:48,430 ERROR time_sync (101): strptime() takes exactly 2 arguments (1 given)
+2023-03-12 16:40:48,430 ERROR time_sync (102): Traceback (most recent call last):
+  File "/Users/admin/FTC_Solar/Verdin/Suites/Cronjobs/Time_sync/python_files/cron_check_utils.py", line 96, in last_run_status
+    _time = [datetime.strptime((line.split(",")[0], "%Y-%m-%d %H:%M:%S") for line in shutdown_log[::-1] if
+TypeError: strptime() takes exactly 2 arguments (1 given)
+
+2023-03-12 16:40:53,513 INFO time_sync (8): Last system Rebooted at 2023-03-12 08:51:34
+2023-03-12 16:40:53,513 ERROR time_sync (25): 'NoneType' object has no attribute 'hour'
+2023-03-12 16:41:56,836 INFO time_sync (16): ************* CHECK SHUTDOWN CRONJOB STARTED**************
+2023-03-12 16:41:56,837 INFO time_sync (19): Last ZC rebooted at 20 mins.
+2023-03-12 16:41:56,837 INFO time_sync (5): Checking shutdown status cron at reboot.
+2023-03-12 16:41:58,076 INFO time_sync (8): Last system Rebooted at 2023-03-12 08:51:34
+2023-03-12 16:41:58,077 ERROR time_sync (25): 'list' object has no attribute 'hour'
+2023-03-12 16:43:03,386 INFO time_sync (16): ************* CHECK SHUTDOWN CRONJOB STARTED**************
+2023-03-12 16:43:03,387 INFO time_sync (19): Last ZC rebooted at 20 mins.
+2023-03-12 16:43:03,387 INFO time_sync (5): Checking shutdown status cron at reboot.
+2023-03-12 16:43:04,918 INFO time_sync (8): Last system Rebooted at 2023-03-12 08:51:34
+2023-03-12 16:43:04,918 ERROR time_sync (25): argument of type 'int' is not iterable

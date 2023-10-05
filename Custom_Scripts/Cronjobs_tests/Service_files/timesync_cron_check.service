@@ -1,0 +1,14 @@
+[Unit]
+Description= CPU RAM CHECK
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/python3 /home/torizon/main.py
+WorkingDirectory=/home/torizon
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+User=torizon
+
+[Install]
+WantedBy=multi-user.target
