@@ -25,7 +25,7 @@ install_dependencies() {
 
 oh_my_zsh="$HOME/.oh_my_zsh"
 
-isntall_ohmyzsh() {
+install_ohmyzsh() {
     if [ -d "$oh_my_zsh" ]; then
         echo "Oh My Zsh is isntalled."
     else
@@ -34,5 +34,17 @@ isntall_ohmyzsh() {
     fi
 }
 
+install_omz_plugings() {
+    echo "Installing autosuggesions..."
+    git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
+    echo "Installing syntax highlighting..."
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
+    echo "Installing fast syntax highlighting..."
+    git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fast-syntax-highlighting
+    echo "Installing Auto complete...."
+    git clone --depth 1 -- https://github.com/marlonrichert/zsh-autocomplete.git $ZSH_CUSTOM/plugins/zsh-autocomplete
+}
+
 install_dependencies
-isntall_ohmyzsh
+install_ohmyzsh
+install_omz_plugings
