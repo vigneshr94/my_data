@@ -36,7 +36,6 @@ install_ohmyzsh() {
     else
         echo "Oh My Zsh is not installed, installing."
         sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-        exit 0
     fi
 }
 
