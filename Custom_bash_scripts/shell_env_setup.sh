@@ -1,7 +1,7 @@
 #!/bin/bash
 
 oh_my_zsh="$HOME/.oh_my_zsh"
-EMAIL="anuptj28@gmail.com"
+read -p "Enter Your EMAIL to generate ssh keys: " EMAIL
 
 update_rpi(){
     sudo apt update
@@ -14,7 +14,7 @@ install_dependencies() {
     else
         echo "ZSH is not installed, installing zsh."
         sudo apt update
-        sudo apt install zsh zsh-common curl git  -y
+        sudo apt install zsh zsh-common -y
     fi
     if [ -x "$(command -v curl)" ]; then
         echo "Curl is already installed."
