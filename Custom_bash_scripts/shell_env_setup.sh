@@ -1,7 +1,12 @@
 #!/bin/bash
 
 oh_my_zsh="$HOME/.oh_my_zsh"
-EMAIL="vigneshr.1894@gmail.com"
+EMAIL="anuptj28@gmail.com"
+
+update_rpi(){
+    sudo apt update
+    sudo apt upgrade -y
+}
 
 install_dependencies() {
     if [ -x "$(command -v zsh)" ]; then
@@ -27,22 +32,23 @@ install_dependencies() {
 
 install_ohmyzsh() {
     if [ -d "$oh_my_zsh" ]; then
-        echo "Oh My Zsh is isntalled."
+        echo "Oh My Zsh is installed."
     else
         echo "Oh My Zsh is not installed, installing."
         sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+        exit 0
     fi
 }
 
 install_omz_plugings() {
     echo "Installing autosuggesions..."
-    git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
+    git clone https://github.com/zsh-users/zsh-autosuggestions.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
     echo "Installing syntax highlighting..."
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
     echo "Installing fast syntax highlighting..."
     git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fast-syntax-highlighting
     echo "Installing Auto complete...."
-    git clone --depth 1 -- https://github.com/marlonrichert/zsh-autocomplete.git $ZSH_CUSTOM/plugins/zsh-autocomplete
+    git clone --depth 1 -- https://github.com/marlonrichert/zsh-autocomplete.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autocomplete
 }
 
 generate_ssh_key() {
@@ -53,7 +59,15 @@ generate_ssh_key() {
     cat ~/.ssh/*.pub
 }
 
+install_poetry() {
+    echo "Installing Poetry"
+    curl -sSL https://install.python-poetry.org | python3 -
+    echo "Poetry Successfully intalled, Please add it to the path"
+}
+
+update_rpi
 install_dependencies
 install_ohmyzsh
 install_omz_plugings
 generate_ssh_key
+install_poetry
