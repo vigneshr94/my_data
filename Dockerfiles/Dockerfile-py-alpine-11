@@ -2,7 +2,7 @@ FROM python:3.11-alpine
 
 WORKDIR /root/Work_space
 
-RUN apk update && apk add bash curl make gcc libc-dev libffi-dev git
+RUN apk update && apk add bash curl make gcc libc-dev libffi-dev git vim
 
 RUN curl -sSL https://install.python-poetry.org | python3 -
 
