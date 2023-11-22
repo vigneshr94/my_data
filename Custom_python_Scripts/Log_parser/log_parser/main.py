@@ -6,7 +6,9 @@ import os
 import re
 import json
 
-# The code is initializing variables `WORK_DIR`, `LOGSDIRs`, `HST2`, `DST2`, and `DSTU`.
+# The above code is trying to remove the file named ".DS_Store" from the "logs_dir" directory. If the
+# file does not exist, it will ignore the exception. Then, it lists all the files and directories in
+# the "logs_dir" directory and prints them.
 WORK_DIR = os.getcwd() + "/logs_dir"
 try:
     os.remove(f"{WORK_DIR}/.DS_Store")
@@ -58,7 +60,7 @@ def get_periodic_request_data(log_dir, log_file):
                 elif "HST3" in line:
                     HST3.append(get_json(line))
                 elif "DST3" in line:
-                    line = line.replace("\n", "") + '"}'
+                    line = line.replace("\n", "") + ']]"}'
                     DST3.append(get_json(line))
                 elif "DALT" in line:
                     DALT.append(get_json(line))
@@ -111,7 +113,35 @@ def prepare_to_plot(sheet_name, __data):
         pass
 
 
-def prepareExcel(writer, sheet_name, Data):
+def dst3_values_parser(dst3_resp):
+    """
+    The function `dst3_values_parser` takes a list of dictionaries as input, extracts specific values
+    from each dictionary, and returns a new list of dictionaries with the extracted values.
+
+    :param dst3_resp: dst3_resp is a list of dictionaries. Each dictionary represents a response from a
+    DST3 device and contains a key "VALUES" which holds a comma-separated string of values. The function
+    dst3_values_parser parses this response and extracts specific values such as "CurrentMode",
+    "CurrentAngle", and "
+    :return: a list of dictionaries. Each dictionary represents a value from the `dst3_resp` input, with
+    additional key-value pairs for `CurrentMode`, `CurrentAngle`, and `BatSoc`. If an error occurs
+    during parsing, an empty dictionary is appended to the list.
+    """
+    # index of data from values current_mode:0, p_angle:1,
+    dst3 = []
+    for val in dst3_resp:
+        try:
+            vals = val["VALUES"].split(",")
+            val["CurrentMode"] = vals[0][1:]
+            val["CurrentAngle"] = vals[1]
+            val["BatSoc"] = vals[23]
+            del val["VALUES"]
+            dst3.append(val)
+        except:
+            dst3.append({})
+    return dst3
+
+
+def prepareExcel(writer, sheet_name, data):
     """
     The function prepares and writes data to an Excel file using a specified writer, sheet name, and
     data.
@@ -124,9 +154,9 @@ def prepareExcel(writer, sheet_name, Data):
     be in any format that can be converted to a pandas DataFrame
     """
     try:
-        to_dataframe = get_dataframe(Data).drop("CID", axis=1)
+        to_dataframe = get_dataframe(data).drop("CID", axis=1)
     except:
-        to_dataframe = get_dataframe(Data)
+        to_dataframe = get_dataframe(data)
     try:
         to_dataframe.to_excel(writer, sheet_name=sheet_name, index=False)
     except:
@@ -221,6 +251,16 @@ def filter_dataframe_by_timeStamp(cmd, dataframe1, dataframe2):
 
 
 def prepare_plot(cmd, plot_name, _dataframe):
+    """
+    The function `prepare_plot` prepares and saves a bar plot based on the given command, plot name, and
+    dataframe.
+
+    :param cmd: The `cmd` parameter is a string that represents the command type. It can have two
+    possible values: "HST3" or "HST2"
+    :param plot_name: The name of the file where the plot will be saved
+    :param _dataframe: The `_dataframe` parameter is a pandas DataFrame that contains the data for
+    plotting. It should have the following columns:
+    """
     if cmd == "HST3":
         value = ["HST3 Command Count", "DST3 Command Count"]
         y_label = "HST3 Sent and DST3 Received Count"
@@ -249,22 +289,28 @@ def prepare_plot(cmd, plot_name, _dataframe):
     plt.savefig(plot_name)
 
 
-def for_hst2(data_list):
+def for_hst2():
+    """
+    The function `for_hst2` prepares and plots data related to HST2 and DST2.
+    """
     excelWriter(excel_file, ["HST2", "DST2", "DSTU", "DALT"], [HST2, DST2, DSTU, DALT])
     hst2 = prepare_to_plot("HST2", get_dataframe(HST2))
     dst2 = prepare_to_plot("DST2", get_dataframe(DST2))
     final_Df = filter_dataframe_by_timeStamp("HST2", hst2, dst2)
     plot_name = f"HST2_vs_DST2_of_{LOGSDIRs[i]}.png"
-    prepare_plot(plot_name, final_Df)
+    prepare_plot("HST2", plot_name, final_Df)
 
 
-def for_hst3(data_list):
+def for_hst3():
+    """
+    The function `for_hst3` prepares and plots data related to HST3 and DST3.
+    """
     excelWriter(excel_file, ["HST3", "DST3", "DSTU", "DALT"], [HST3, DST3, DSTU, DALT])
     hst3 = prepare_to_plot("HST3", get_dataframe(HST3))
     dst3 = prepare_to_plot("DST3", get_dataframe(DST3))
     final_Df = filter_dataframe_by_timeStamp("HST3", hst3, dst3)
     plot_name = f"HST3_vs_DST3_of_{LOGSDIRs[i]}.png"
-    prepare_plot(plot_name, final_Df)
+    prepare_plot("HST3", plot_name, final_Df)
 
 
 # The code block `if __name__ == "__main__":` is a common Python idiom that allows a script to be
@@ -286,7 +332,7 @@ if __name__ == "__main__":
         logs = os.listdir(log_files_loc)
         excel_file = f"periodic_request_{LOGSDIRs[i]}.xlsx"
         excel_file_plots = f"periodic_request_plot_{LOGSDIRs[i]}.xlsx"
-        dstu_plot = f"dstu_{LOGSDIRs[i]}"
-        dalt_plot = f"dalt_{LOGSDIRs[i]}"
         get_periodic_request_data(log_files_loc, logs)
+        DST3 = dst3_values_parser(DST3)
         # call the requried function here
+        for_hst3()
