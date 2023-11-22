@@ -12,7 +12,7 @@ ENV PATH="$POETRY_HOME/bin:$PATH"
 
 RUN /root/.local/bin/poetry config virtualenvs.create false
 
-RUN pip install bpython
+RUN python3 -m pip install bpython
 
 ENTRYPOINT [ "/bin/bash" ]
 

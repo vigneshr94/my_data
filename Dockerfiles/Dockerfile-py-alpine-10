@@ -12,6 +12,8 @@ ENV PATH=$POETRY_HOME:$PATH
 
 RUN poetry config virtualenvs.create false
 
-RUN python3 -m pip3 install bpython
+RUN python3 -m pip install bpython
 
 ENTRYPOINT /bin/bash
+
+# docker run -it -v $(pwd):/root/Work_space --name py_env vigneshr94/python_env:latest
