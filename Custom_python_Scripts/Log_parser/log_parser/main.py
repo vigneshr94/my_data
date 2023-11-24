@@ -7,7 +7,9 @@ Installing Virtual env - python -m pip install virtualenv
 
 create Virtual env - python -m venv env
 
-To activate Virtual env - source env/bin/activate
+To activate Virtual env - source env/bin/activate for linux and mac
+                          env\Scripts\Activate.PS1 for windows powershell
+                          env\Scripts\activate.bat for windows CMD
 
 To install dependencies - pip install -r requirement.txt
 
