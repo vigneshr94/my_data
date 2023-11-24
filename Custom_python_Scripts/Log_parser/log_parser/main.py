@@ -1,3 +1,19 @@
+"""
+Pre-requisites - Python-3.11 or above, virtualenv
+
+Place the logs in the logs_dir folder structure should be logs_dir/array_name/xbee_backend.log.*
+
+Installing Virtual env - python -m pip install virtualenv
+
+create Virtual env - python -m venv env
+
+To activate Virtual env - source env/bin/activate
+
+To install dependencies - pip install -r requirement.txt
+
+To run the script - python main.py
+"""
+
 # The code is importing the necessary libraries for data manipulation and file handling in Python.
 import pandas as pd
 import numpy as np
@@ -250,7 +266,7 @@ def filter_dataframe_by_timeStamp(cmd, dataframe1, dataframe2):
     return count_df
 
 
-def prepare_plot(cmd, plot_name, _dataframe):
+def prepare_plot(cmd, plot_name, _dataframe, array_name):
     """
     The function `prepare_plot` prepares and saves a bar plot based on the given command, plot name, and
     dataframe.
@@ -264,7 +280,7 @@ def prepare_plot(cmd, plot_name, _dataframe):
     if cmd == "HST3":
         value = ["HST3 Command Count", "DST3 Command Count"]
         y_label = "HST3 Sent and DST3 Received Count"
-        _title = "HST3 vs DST3"
+        _title = f"HST3 vs DST3_{array_name}"
     elif cmd == "HST2":
         value = (["HST2 Command Count", "DST2 Command Count"],)
         y_label = "HST2 Sent and DST2 Received Count"
@@ -310,7 +326,7 @@ def for_hst3():
     dst3 = prepare_to_plot("DST3", get_dataframe(DST3))
     final_Df = filter_dataframe_by_timeStamp("HST3", hst3, dst3)
     plot_name = f"HST3_vs_DST3_of_{LOGSDIRs[i]}.png"
-    prepare_plot("HST3", plot_name, final_Df)
+    prepare_plot("HST3", plot_name, final_Df, LOGSDIRs[i])
 
 
 # The code block `if __name__ == "__main__":` is a common Python idiom that allows a script to be
