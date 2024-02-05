@@ -1,9 +1,10 @@
 #!/bin/bash
 
 oh_my_zsh="$HOME/.oh_my_zsh"
+os_type=$(uname -a | cut -d ' ' -f 1)
 read -p "Enter Your EMAIL to generate ssh keys: " EMAIL
 
-update_rpi(){
+update_repos(){
     sudo apt update
     sudo apt upgrade -y
 }
@@ -13,20 +14,32 @@ install_dependencies() {
         echo "ZSH is already installed"
     else
         echo "ZSH is not installed, installing zsh."
-        sudo apt update
-        sudo apt install zsh zsh-common -y
+        if [ "$os_type" == "Linux" ]; then
+            sudo apt update
+            sudo apt install zsh zsh-common -y
+        elif [ "$os_type" == "Darwin" ]; then
+            brew install zsh
+        fi
     fi
-    if [ -x "$(command -v curl)" ]; then
-        echo "Curl is already installed."
+    if [ -x "$(command -v curl wget)" ]; then
+        echo "Curl and wget is already installed."
     else
-        echo "Installing Curl."
-        sudo apt install curl -y
+        echo "Installing Curl and WGET."
+        if [ "$os_type" == "Linux" ]; then
+            sudo apt install curl wget -y
+        elif [ "$os_type" == "Darwin" ]; then
+            brew install curl wget
+        fi
     fi
     if [ -x "$(command -v git)" ]; then
         echo "Git is already isntalled."
     else
         echo "Installing Git."
-        sudo apt isntall git -y
+        if [ "$os_type" == "Linux" ]; then
+            sudo apt install git -y
+        elif [ "$os_type" == "Darwin" ]; then
+            brew install git
+        fi
     fi
 }
 
@@ -64,9 +77,21 @@ install_poetry() {
     echo "Poetry Successfully intalled, Please add it to the path"
 }
 
-update_rpi
+install_docker() {
+    echo "Installing Docker"
+    curl -fsSL https://get.docker.com -o get-docker.sh
+    sudo sh ./get-docker.sh
+    sudo usermod -aG docker $USER
+    echo "Docker Successfully installed. Logout and login to use docker without sudo."
+}
+
+
+if [$os_type == "Linux"]; then
+    update_repos
+fi
 install_dependencies
 install_ohmyzsh
 install_omz_plugings
 generate_ssh_key
 install_poetry
+install_docker
