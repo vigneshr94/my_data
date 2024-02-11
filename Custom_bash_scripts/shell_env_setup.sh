@@ -3,6 +3,7 @@
 oh_my_zsh="$HOME/.oh_my_zsh"
 os_type=$(uname -a | cut -d ' ' -f 1)
 read -p "Enter Your EMAIL to generate ssh keys: " EMAIL
+read -p "Do you want to install tmux: " TMUX
 
 update_repos(){
     sudo apt update
@@ -10,38 +11,53 @@ update_repos(){
 }
 
 install_dependencies() {
-    if [ -x "$(command -v zsh)" ]; then
-        echo "ZSH is already installed"
-    else
-        echo "ZSH is not installed, installing zsh."
-        if [ "$os_type" == "Linux" ]; then
+    if [ "$os_type" == "Linux" ]; then
+        if [ -x "$(command -v zsh)" ]; then
+            echo "ZSH is already installed"
+        else
+            echo "ZSH installation is not found, installing zsh"
             sudo apt update
             sudo apt install zsh zsh-common -y
-        elif [ "$os_type" == "Darwin" ]; then
-            brew install zsh
+        fi
+        if [ -x "$(command -v curl)" ]; then
+            echo "curl installation not found"
+        else
+            sudo apt install curl -y
+        fi
+        if [ -x "$(command -v wget)"]; then
+            echo "wget installation is not found" 
+        else
+            sudo apt install wget -y
+        fi
+        if [ -x "$(command -v git)"]; then
+            echo "git installation is not found" 
+        else
+            sudo apt install git -y 
+        fi
+    elif [ "$os_type" == "Darwin" ]; then
+        if [ -x "$(command -v zsh)" ]; then
+            echo "ZSH is already installed"
+        else
+            echo "ZSH installation is not found, installing zsh"
+            brew install zsh zsh-common -y
+        fi
+        if [ -x "$(command -v curl)" ]; then
+            echo "curl installation not found"
+        else
+            brew install curl -y
+        fi
+        if [ -x "$(command -v wget)"]; then
+            echo "wget installation is not found" 
+        else
+            brew install wget -y
+        fi
+        if [ -x "$(command -v git)"]; then
+            echo "git installation is not found" 
+        else
+            brew install git -y 
         fi
     fi
-    if [ -x "$(command -v curl wget)" ]; then
-        echo "Curl and wget is already installed."
-    else
-        echo "Installing Curl and WGET."
-        if [ "$os_type" == "Linux" ]; then
-            sudo apt install curl wget -y
-        elif [ "$os_type" == "Darwin" ]; then
-            brew install curl wget
-        fi
-    fi
-    if [ -x "$(command -v git)" ]; then
-        echo "Git is already isntalled."
-    else
-        echo "Installing Git."
-        if [ "$os_type" == "Linux" ]; then
-            sudo apt install git -y
-        elif [ "$os_type" == "Darwin" ]; then
-            brew install git
-        fi
-    fi
-}
+}   
 
 install_ohmyzsh() {
     if [ -d "$oh_my_zsh" ]; then
@@ -85,8 +101,18 @@ install_docker() {
     echo "Docker Successfully installed. Logout and login to use docker without sudo."
 }
 
+install_tmux() {
+    if [ $os_type == "Linux" ]; then
+        sudo apt install tmux -y
+    elif [ $os_type == "Darwin" ]; then
+        brew install tmux
+    fi
+    git clone https://github.com/gpakosz/.tmux.git
+    cp .tmux/.tmux.conf.local ~/
+    cp .tmux/.tmux.conf ~/
+}
 
-if [$os_type == "Linux"]; then
+if [ $os_type == "Linux" ]; then
     update_repos
 fi
 install_dependencies
@@ -95,3 +121,7 @@ install_omz_plugings
 generate_ssh_key
 install_poetry
 install_docker
+if [ "$tmux" == "yes" ]; then
+    install_tmux
+fi
+
