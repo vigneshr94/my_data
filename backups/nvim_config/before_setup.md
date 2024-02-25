@@ -6,3 +6,19 @@
 - bottom - process viewer toggle terminal (<leader>tt)
 - Python - python repl toggle terminal (<leader>tp)
 - Node - Node is needed for a lot of the LSPs, and for the node repl toggle terminal (<leader>tn)
+
+# Mason Packages
+
+- bashls
+- black
+- docker_compose_language_service
+- dockerls
+- isort
+- jedi_language_server
+- prettier
+- pylint
+- pyright
+- pylsp
+- snyk
+- typescritp-language-server
+
