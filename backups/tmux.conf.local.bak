@@ -126,7 +126,7 @@ tmux_conf_theme_focused_pane_bg="$tmux_conf_theme_colour_2"
 # pane border style, possible values are:
 #   - thin (default)
 #   - fat
-tmux_conf_theme_pane_border_style=fat
+tmux_conf_theme_pane_border_style=thin
 
 # pane borders colours:
 tmux_conf_theme_pane_border="$tmux_conf_theme_colour_2"
@@ -359,7 +359,7 @@ tmux_conf_copy_to_os_clipboard=true
 # this is the place to override or undo settings
 
 # increase history size
-#set -g history-limit 10000
+set -g history-limit 10000
 
 # start with mouse mode enabled
 set -g mouse on
@@ -380,8 +380,7 @@ set -g mode-keys vi
 # bind c new-window -c '#{pane_current_path}' #!important
 
 # move status line to top
-# set -g status-position top
-
+set -g status-position top
 
 # -- tpm -----------------------------------------------------------------------
 
@@ -424,7 +423,7 @@ set -g @plugin 'tmux-plugins/tmux-resurrect'
 set -g @plugin 'tmux-plugins/tmux-continuum'
 set -g @continuum-restore 'on'
 set -g @plugin 'catppuccin/tmux'
-set -g @catppuccin_flavour 'frappe' # frappe, macchiato, mocha
+set -g @catppuccin_flavour 'mocha' # frappe, macchiato, mocha
 set -g @catppuccin_window_left_separator ""
 set -g @catppuccin_window_right_separator " "
 set -g @catppuccin_window_middle_separator " █"
@@ -445,6 +444,7 @@ set -g @catppuccin_status_connect_separator "no"
 
 set -g @catppuccin_directory_text "#{pane_current_path}"
 # set -g @catppuccin_window_current_text "#{b:pane_current_path}" # use "#W" for application instead of directory
+set -ga terminal-overrides ',*:Ss=\E[%p2%d q:Se=\E[4 q'
 # -- custom variables ----------------------------------------------------------
 
 # to define a custom #{foo} variable, define a POSIX shell function between the
