@@ -1,7 +1,0 @@
-Reboot No. 1		ZC URL: 192.168.1.125
-Reboot Test 1 state: True
-Reboot Test 1 active services: ['bq', 'collectionsCheck', 'commandQueue', 'mcuCollector', 'miscAlerts', 'modbus', 'periodicRequests', 'processHealthMonitor', 'timePublisher', 'webApp', 'xbeeBackendApi', 'zcEngine']
-Reboot Test 1 inactive services: ['backTracking', 'bifacialTracking', 'diffusedTracking', 'flood', 'heartBeatXbee', 'ntp', 'otaManager', 'snow', 'vpn', 'wind', 'zcMqttHelper']
-Log files status after reboot ZC: True
-***** Reboot Test 1 is completed *****
-
