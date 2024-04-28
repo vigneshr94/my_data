@@ -16,6 +16,6 @@ RUN /root/.local/bin/poetry config virtualenvs.create false
 
 RUN python3 -m pip install bpython
 
-ENTRYPOINT [ "/bin/bash" ]
+CMD [ "python3" ]
 
 # docker run -it -v $(pwd):/root/Work_space --name py_env vigneshr94/python_env:latest
